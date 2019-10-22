@@ -27,16 +27,13 @@ namespace Conduit.Features.Articles
         {
             public ArticleDataValidator()
             {
-                RuleFor(x => x.Title).NotNull().NotEmpty();
+                NotNullOrEmpty(x => x.Title);
 
-                RuleFor((y) => y.Description).NotEmpty().NotNull();
+                NotNullOrEmpty((y) => y.Description);
 
-                RuleFor(x => x.TagList)
-                    .NotNull().NotEmpty();
+                NotNullOrEmpty(x => x.TagList);
 
-                RuleFor((x) => x.Body)
-                    .NotEmpty()
-                    .NotNull();
+                NotNullOrEmpty((x) => x.Body);
             }
         }
 
@@ -49,7 +46,7 @@ namespace Conduit.Features.Articles
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Article).NotNull().NotEmpty();
+                NotNullOrEmpty(x => x.Article);
             }
         }
 
