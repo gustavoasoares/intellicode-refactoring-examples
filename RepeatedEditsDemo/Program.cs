@@ -24,7 +24,7 @@ namespace Refactorings
                         double tempF = System.Convert.ToDouble(tempFString);
                         fTemps.Add(tempF);
 
-                        Console.WriteLine((tempF -32) * (5.0/9.0));
+                        Console.WriteLine(FtoC(tempF));
                         
                     }
                     if (s.Length > 0 && s.Substring(s.Length - 1).Equals("C"))
@@ -66,7 +66,7 @@ namespace Refactorings
                 }
             }
 
-            return ((fMin -32) * (5.0/9.0));
+            return (FtoC(fMin));
         }
         private static double MinTempInF(List<double> cTemps)
         {
@@ -95,7 +95,7 @@ namespace Refactorings
                 }
             }
 
-            return (fMax - 32) * (5.0 / 9.0);
+            return FtoC(fMax);
         }
         private static double MaxTempInF(List<double> cTemps)
         {
