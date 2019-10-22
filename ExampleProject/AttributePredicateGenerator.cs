@@ -27,7 +27,7 @@ namespace ExampleProject
             var parent = node.Parent;
             if (parent != null)
             {
-                var parentAttrs = parent.Attrs().Where(a => IsValid(a, parent.Kind));
+                var parentAttrs = parent.Attrs();
                 return parentAttrs.Select(pa => new ParentAttributePred(pa));
             }
             else
@@ -38,13 +38,8 @@ namespace ExampleProject
 
         public IEnumerable<IPredicate> SelfPredicates(TreeNode node)
         {
-            var attrs = node.Attrs().Where(a => IsValid(a, node.Kind));
+            var attrs = node.Attrs();
             return attrs.Select(a => new SelfAttributePred(a));
-        }
-
-        private bool IsValid(IAttribute a, IKind kind)
-        {
-            return this._context.IsKindAttrValid(a, kind);
         }
 
         public IEnumerable<IPredicate> RelativeChildPredicates(TreeNode node)
@@ -57,7 +52,7 @@ namespace ExampleProject
                 {
                     var child = cs.Item1;
                     var relativeSelector = cs.Item2;
-                    var childAttrs = child.Attrs().Where(a => IsValid(a, child.Kind));
+                    var childAttrs = child.Attrs();
                     return childAttrs
                         .Select(ca =>
                                 new RelativeChildAttrPred(relativeSelector, ca));
@@ -70,7 +65,7 @@ namespace ExampleProject
             return children
                 .SelectMany((c, i) =>
                 {
-                    var childAttrs = c.Attrs().Where(a => IsValid(a, c.Kind));
+                    var childAttrs = c.Attrs();
                     return childAttrs
                         .Select(ca => new FixedChildAttrPred(i, ca));
                 });
@@ -82,7 +77,7 @@ namespace ExampleProject
             if (parent != null)
             {
                 var ancestorPreds = AncestorPredicates(parent);
-                var parentAttrs = parent.Attrs().Where(a => IsValid(a, parent.Kind));
+                var parentAttrs = parent.Attrs();
                 var parentPreds = parentAttrs
                     .Select(pa => new AncestorAttributePred(pa));
                 return parentPreds.Concat(ancestorPreds);
