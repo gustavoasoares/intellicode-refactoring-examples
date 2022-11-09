@@ -41,7 +41,6 @@ namespace CimenaCityProject.CustomHtmlHelper
 
             }
             TagBuilder tb = new TagBuilder("img");
-            tb.Attributes.Add("src", VirtualPathUtility.ToAbsolute(src));
             tb.Attributes.Add("alt", alt);
 
 
